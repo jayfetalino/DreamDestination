@@ -42,7 +42,7 @@ const Country = (props) => {
                 })}
             </CardContent>
             <CardActions>
-                <Button size="small" startIcon={<AirplaneTicketIcon color="error" />}>
+                <Button onClick={props.onClickFavorite} size="small" startIcon={<AirplaneTicketIcon color="error" />}>
                     Dream Destination
                 </Button>
                 <Button href={country.maps.googleMaps} size="small" startIcon={<ExploreIcon color="primary" />}>

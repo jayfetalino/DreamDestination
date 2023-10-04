@@ -1,4 +1,6 @@
-import React from 'react';
+
+
+import React, { useState} from 'react';
 import Typography from '@mui/material/Typography';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -53,6 +55,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const ListOfCountries = (props) => {
+  const [favorites, setFavorites] = useState([]);
+  console.log(favorites);
+
   return (
     <>
       <Box sx={{ flexGrow: 2 }}>
@@ -95,7 +100,7 @@ const ListOfCountries = (props) => {
           justifyContent: "centered"
         }}
       >
-        {props.countries.map((country, index) => <Country key={index} country={country} /> )}
+        {props.countries.map((country, index) => <Country onClickFavorite={() => setFavorites([...favorites, country])} key={index} country={country} /> )}
       </div>
     </>
   );
