@@ -1,15 +1,5 @@
-import React, { useEffect, useState } from 'react';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+import React from 'react';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
-import ExploreIcon from '@mui/icons-material/Explore';
-
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,8 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-
-
+import Country from './Country'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,72 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-
-
-const countryContinentToColor = {
-  'Asia': 'teal',
-  'Europe': 'maroon',
-  'Africa': 'orange',
-  'North America': 'hibiscus',
-  'South America': 'Gold',
-  'Australia': 'Jade',
-  'Antartica': 'Violet',
-  'Oceania': 'Black'
-}
-
-const Country = (props) => {
-  const country = props.country;
-
-  const [countryData, setCountryData] = useState();
-
-  useEffect(() => {
-    // console.log(country);
-
-    const getCountry = async () => {
-      try {
-        console.log(country);
-        const response = await fetch(country);
-        const data = await response.json();
-
-        setCountryData(data);
-      } catch (error) {
-        // console.log(error);
-      }
-
-    };
-
-    getCountry();
-  }, []);
-
-  return (
-    <Card sx={{ maxWidth: "50%" }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={country.flags.png}
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {country.name.common[0].toUpperCase() + country.name.common.slice(1)}
-        </Typography>
-        {country.continents.map((continent) => {
-          return <Chip
-            sx={{ backgroundColor: countryContinentToColor[continent] }}
-            label={`Continent: ${continent}`} color="success" />
-        })}
-      </CardContent>
-      <CardActions>
-        <Button size="small" startIcon={<AirplaneTicketIcon color="error" />}>
-          Dream Destination
-        </Button>
-        <Button size="small" startIcon={<ExploreIcon color="primary" />}>
-          Where in the world?
-        </Button>
-      </CardActions>
-    </Card>
-  );
-}
 
 const ListOfCountries = (props) => {
   return (
@@ -172,18 +95,10 @@ const ListOfCountries = (props) => {
           justifyContent: "centered"
         }}
       >
-        {props.countryInput.map((country, index) => {
-
-
-          return <Country country={country} />;
-
-        })}
+        {props.countries.map((country, index) => <Country key={index} country={country} /> )}
       </div>
     </>
   );
 };
 
-
 export default ListOfCountries;
-
-
