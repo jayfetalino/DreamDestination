@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -45,7 +45,7 @@ const Country = (props) => {
                 <Button size="small" startIcon={<AirplaneTicketIcon color="error" />}>
                     Dream Destination
                 </Button>
-                <Button size="small" startIcon={<ExploreIcon color="primary" />}>
+                <Button href={country.maps.googleMaps} size="small" startIcon={<ExploreIcon color="primary" />}>
                     Where in the world?
                 </Button>
             </CardActions>
